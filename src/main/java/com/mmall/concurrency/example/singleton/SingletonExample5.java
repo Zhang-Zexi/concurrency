@@ -1,6 +1,5 @@
 package com.mmall.concurrency.example.singleton;
 
-import com.mmall.concurrency.annotations.NotRecommend;
 import com.mmall.concurrency.annotations.NotThreadSafe;
 import com.mmall.concurrency.annotations.ThreadSafe;
 
@@ -11,11 +10,11 @@ import com.mmall.concurrency.annotations.ThreadSafe;
  * @Date 2019/11/16 17:16
  * Version 1.0
  **/
-@NotThreadSafe
-public class SingletonExample4 {
+@ThreadSafe
+public class SingletonExample5 {
 
     // 私有的构造函数
-    private SingletonExample4() {
+    private SingletonExample5() {
 
     }
 
@@ -31,15 +30,16 @@ public class SingletonExample4 {
     //2、初始化对象ctorInstance()
 
     // 单例对象
-    private static SingletonExample4 instance = null;
+    // 使用volatile限制指令重排
+    private volatile static SingletonExample5 instance = null;
 
     // 静态的工厂方法
     // 性能开销太大
-    public static SingletonExample4 getInstance() {
+    public static SingletonExample5 getInstance() {
         if (instance == null) { //  双重检测机制      // B
-            synchronized (SingletonExample4.class) { // 同步锁
+            synchronized (SingletonExample5.class) { // 同步锁
                 if (instance == null) {
-                    instance = new SingletonExample4(); // A - 3
+                    instance = new SingletonExample5(); // A - 3
                     // 如果此时发生了指令重排序，线程A执行了3，没有执行2
                     // 此时B处发现已经分配好instance了，就拿来使用
                     // 但是这个时候是没有初始化对象的

@@ -44,7 +44,7 @@ public class CountExample1 {
         log.info("count:{}", count);
     }
 
-    public static void add() {
+    private static void add() {
         count ++;
     }
 }

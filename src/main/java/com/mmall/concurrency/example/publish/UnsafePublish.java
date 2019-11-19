@@ -16,6 +16,7 @@ import java.util.Arrays;
 @NotThreadSafe
 public class UnsafePublish {
 
+    // 多个线程都能修改这个值，这样线程不安全
     private String[] states = {"a", "b", "c"};
 
     public String[] getStates() {

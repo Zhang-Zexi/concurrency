@@ -1,7 +1,6 @@
 package com.mmall.concurrency.example.immutable;
 
 import com.google.common.collect.Maps;
-import com.mmall.concurrency.annotations.NotThreadSafe;
 import com.mmall.concurrency.annotations.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,7 +30,7 @@ public class ImmutableExample2 {
     }
 
     public static void main(String[] args) {
-        map.put(1,3 );// 虽然不能修改引用，但是可以修改里面的值
+        map.put(1,3 );
         log.info("{}", map.get(1));
     }
 }

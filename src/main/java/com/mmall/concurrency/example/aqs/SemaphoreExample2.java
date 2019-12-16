@@ -28,7 +28,7 @@ public class SemaphoreExample2 {
             final int threadNum = i;
             exec.execute(() -> {
                 try {
-                    // 不太明白获取多个许可有什么用
+                    // 一次拿走了这多个许可，后面再向获取这个许可的时候，只能等待前面的许可使用完成了
                     semaphore.acquire(3); // 获取许可
                     test(threadNum);
                     semaphore.release(3); // 释放许可
@@ -43,6 +43,6 @@ public class SemaphoreExample2 {
     }
     private static void test(int threadNum) throws Exception {
         log.info("{}", threadNum);
-        Thread.sleep(1000);
+        Thread.sleep(10000);
     }
 }

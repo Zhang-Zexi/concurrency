@@ -36,7 +36,7 @@ public class CountDownLatchExample1 {
                 }
             });
         }
-        countDownLatch.await();// 确保执行完之后，执行接下来的语句
+//        countDownLatch.await();// 确保执行完之后，执行接下来的语句
         log.info("finish");
         exec.shutdown();
     }
